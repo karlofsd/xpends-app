@@ -34,25 +34,25 @@ public class SpotController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<SpotDto> getById(@PathVariable("id") Long id) throws SQLException {
         SpotDto dto = spotService.get(id);
         ApiResponseData<SpotDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Spot obtenido");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<SpotDto>> getAll(@RequestParam Map<String,Object> params) throws SQLException {
         params.entrySet().forEach(param ->{
             if (Objects.isNull(param.getValue())) params.remove(param.getKey());
         });
         List<SpotDto> dtoList = spotService.getAll(params);
         ApiResponseData<List<SpotDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Spots obtenidos");
         response.setData(dtoList);
         return response;

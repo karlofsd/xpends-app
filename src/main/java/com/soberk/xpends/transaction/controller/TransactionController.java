@@ -30,18 +30,18 @@ public class TransactionController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<TransactionWithCategoryDto> getById(@PathVariable("id") String id) throws SQLException {
         TransactionWithCategoryDto dto = transactionService.get(UUID.fromString(id));
         ApiResponseData<TransactionWithCategoryDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Transacción obtenida");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<TransactionDto>> getAll(@RequestParam Map<String,Object> params) throws SQLException {
 //        Map<String,Object> params = Map.of("transaction_type",type,"spot_id",spotId,"category_id",categoryId);
         params.entrySet().forEach(param -> {
@@ -49,7 +49,7 @@ public class TransactionController {
         });
         List<TransactionDto> dtoList = transactionService.getAll(params);
         ApiResponseData<List<TransactionDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Transacciones obtenidas");
         response.setData(dtoList);
         return response;

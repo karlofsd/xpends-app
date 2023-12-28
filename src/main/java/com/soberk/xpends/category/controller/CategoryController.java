@@ -42,25 +42,25 @@ public class CategoryController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<CategoryDto> getById(@PathVariable("id") Long id) throws SQLException {
         CategoryDto dto = categoryService.get(id);
         ApiResponseData<CategoryDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Categoría obtenida");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<CategoryDto>> getAll(@RequestParam Map<String,Object> params) throws SQLException {
         params.entrySet().forEach(param ->{
             if (Objects.isNull(param.getValue())) params.remove(param.getKey());
         });
         List<CategoryDto> dtoList = categoryService.getAll(params);
         ApiResponseData<List<CategoryDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Categorías obtenidas");
         response.setData(dtoList);
         return response;

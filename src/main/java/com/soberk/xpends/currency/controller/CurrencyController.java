@@ -50,22 +50,22 @@ public class CurrencyController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<CurrencyDto> getById(@PathVariable("id") Long id) throws SQLException {
         CurrencyDto dto = currencyService.getById(id);
         ApiResponseData<CurrencyDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Moneda obtenida");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<CurrencyDto>> getAll() throws SQLException {
         List<CurrencyDto> dtoList = currencyService.getAll();
         ApiResponseData<List<CurrencyDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Monedas obtenidas");
         response.setData(dtoList);
         return response;

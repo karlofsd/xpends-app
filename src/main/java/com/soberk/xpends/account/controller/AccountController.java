@@ -45,22 +45,22 @@ public class AccountController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<AccountWithSpotDto> getById(@PathVariable("id") UUID id) throws SQLException, EntityNotFoundException {
         AccountWithSpotDto dto = accountService.get(id);
         ApiResponseData<AccountWithSpotDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<AccountDto>> getAll() throws SQLException {
         List<AccountDto> dtoList = accountService.getAll();
         ApiResponseData<List<AccountDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("");
         response.setData(dtoList);
         return response;

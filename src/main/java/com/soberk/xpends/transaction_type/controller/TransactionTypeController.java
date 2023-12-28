@@ -41,22 +41,22 @@ public class TransactionTypeController {
     }
 
     @GetMapping(path = "{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<TransactionTypeDto> getById(@PathVariable("id") Long id) throws SQLException {
         TransactionTypeDto dto = transactionTypeService.getById(id);
         ApiResponseData<TransactionTypeDto> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Tipo obtenido");
         response.setData(dto);
         return response;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseData<List<TransactionTypeDto>> getById() throws SQLException {
         List<TransactionTypeDto> dtoList = transactionTypeService.getAll();
         ApiResponseData<List<TransactionTypeDto>> response = new ApiResponseData<>();
-        response.setCode(HttpStatus.FOUND.value());
+        response.setCode(HttpStatus.OK.value());
         response.setMessage("Tipos obtenidos: "+dtoList.size());
         response.setData(dtoList);
         return response;
